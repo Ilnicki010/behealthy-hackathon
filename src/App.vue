@@ -19,4 +19,11 @@ body {
   margin: 0;
   padding: 0;
 }
+a {
+  color: #333;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
 </style>
