@@ -2,10 +2,17 @@
   <div class="fullWrapper" @scroll="onScroll">
     <header class="header" v-if="this.restaurant.img" :style="this.style" id="header">
       <h1 v-if="restaurant">{{this.restaurant.name}}</h1>
+      <p>{{this.restaurant.adress}} | {{this.restaurant.city}}</p>
+      <a
+        class="menu"
+        v-if="this.restaurant.menu_link"
+        :href="this.restaurant.menu_link"
+        target="blank"
+      >Menu</a>
     </header>
     <div class="content">
       <h2 class="basic-header">Basic Info</h2>
-      <div class="basicInfo">
+      <div class="info">
         <label>without GMO</label>
         <v-icon v-if="restaurant.gmo == 1" name="check"/>
         <v-icon v-if="restaurant.gmo == null" name="times"/>
@@ -18,12 +25,22 @@
         <label>Gluten free</label>
         <v-icon v-if="restaurant.glutenFree == 1" name="check"/>
         <v-icon v-if="restaurant.glutenFree == null" name="times"/>
+        <label>Local products</label>
+        <v-icon v-if="restaurant.localProducts == 1" name="check"/>
+        <v-icon v-if="restaurant.localProducts == null" name="times"/>
       </div>
-      <p>
-        The specification details that the default behavior in align-self is to stretch, except for items which have an intrinsic aspect ratio, in this case they behave as start. The reason for this, is that if items with an aspect ratio are set to stretch, this default would distort them.
-        The specification details that the default behavior in align-self is to stretch, except for items which have an intrinsic aspect ratio, in this case they behave as start. The reason for this, is that if items with an aspect ratio are set to stretch, this default would distort them.
-        The specification details that the default behavior in align-self is to stretch, except for items which have an intrinsic aspect ratio, in this case they behave as start. The reason for this, is that if items with an aspect ratio are set to stretch, this default would distort them.
-      </p>
+      <h2 class="basic-header">Providers</h2>
+      <div class="info info--less-padding">
+        <h2 v-html="restaurant.providers"></h2>
+      </div>
+      <h2 class="basic-header">Certificates</h2>
+      <div class="info info--less-padding">
+        <h2 v-html="restaurant.certs_name"></h2>
+        <img
+          v-if="restaurant.certs_imgs"
+          :src="`http://localhost:1337/${restaurant.certs_imgs.url}`"
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -77,6 +94,7 @@ export default {
   width: 100%;
   color: #fff;
   position: fixed;
+  flex-direction: column;
   display: flex;
   top: 0;
   left: auto;
@@ -84,19 +102,30 @@ export default {
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
   flex: 1;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: fixed;
   z-index: -99999;
+  h1 {
+    margin: 0;
+    font-size: 3rem;
+  }
 }
 .basic-header {
   font-size: 2.3rem;
-  text-shadow: -10px -17px 0 rgba(0, 0, 0, 0.3);
+  text-shadow: -10px -17px 0 rgba(0, 0, 0, 0.1);
   color: #52ffb8;
+  margin-bottom: 5px;
+  margin-top: 40px;
 }
-.basicInfo {
+.menu {
+  background: #52ffb8;
+  padding: 4px;
+  width: 40%;
+  border-radius: 60px;
+}
+.info {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: 100px, 100px, 100px, 100px;
@@ -106,6 +135,13 @@ export default {
   align-items: center;
   background: #52ffb8;
   padding: 20px;
+  border-radius: 4px;
+  img {
+    max-height: 50px;
+  }
+}
+.info--less-padding {
+  padding: 5px;
 }
 .content {
   z-index: 99999;
