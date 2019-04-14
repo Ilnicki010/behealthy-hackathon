@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <header class="header">
-      <h1>Look inside your meal</h1>
+      <Map :city="selected" @clickMarker="clickMarker"/>
     </header>
     <div class="content">
       <select class="select" v-model="selected" @change="changeCity">
-        <option disabled value>Wybierz miasto...</option>
+        <option value="All">Wybierz miasto...</option>
         <option value="Gdynia">Gdynia</option>
         <option value="Gdansk">Gdansk</option>
         <option value="Sopot">Sopot</option>
@@ -23,11 +23,13 @@
 <script>
 // @ is an alias to /src
 import Element from "@/components/Element.vue";
+import Map from "@/components/Map.vue";
 import axios from "axios";
 export default {
   name: "home",
   components: {
-    Element
+    Element,
+    Map
   },
   data() {
     return {
@@ -36,14 +38,34 @@ export default {
     };
   },
   methods: {
+    clickMarker(id) {
+      console.log(id);
+      if (id) {
+        axios
+          .get(`http://localhost:1337/restaurants?id=${id}`)
+          .then(results => {
+            this.restaurants = results.data;
+            console.log(results.data);
+          });
+      }
+    },
+
     changeCity() {
       console.log(this.selected);
-      axios
-        .get(`http://localhost:1337/restaurants?city=${this.selected}`)
-        .then(results => {
+      if (this.selected == "All") {
+        axios.get(`http://localhost:1337/restaurants`).then(results => {
           this.restaurants = results.data;
           console.log(results.data);
         });
+      } else {
+        //this.$emit("changeCity", this.selected);
+        axios
+          .get(`http://localhost:1337/restaurants?city=${this.selected}`)
+          .then(results => {
+            this.restaurants = results.data;
+            console.log(results.data);
+          });
+      }
     }
   },
   mounted() {
@@ -70,8 +92,8 @@ export default {
 }
 .cityName {
   position: absolute;
-  z-index: 99;
-  top: -100px;
+  z-index: -99;
+  top: -95px;
   font-size: 4rem;
 }
 .content {
@@ -87,6 +109,10 @@ export default {
   position: relative;
   z-index: 9999999;
   margin-top: 50px;
+  @media (min-width: 1025px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 }
 
 .select {
@@ -96,6 +122,13 @@ export default {
   width: 100%;
   border-radius: 60px;
   color: #444;
+  &:focus {
+    outline: none;
+    background: #06ae688e;
+  }
+  @media (min-width: 1025px) {
+    height: 50px;
+  }
 }
 </style>
 

@@ -14,20 +14,20 @@
       <h2 class="basic-header">Basic Info</h2>
       <div class="info">
         <label>without GMO</label>
-        <v-icon v-if="restaurant.gmo == 1" name="check"/>
-        <v-icon v-if="restaurant.gmo == null" name="times"/>
+        <v-icon v-if="restaurant.gmo == 1" name="check" color="#007947"/>
+        <v-icon v-if="restaurant.gmo == null" name="times" color="#ff6252"/>
         <label>ECO friendly</label>
-        <v-icon v-if="restaurant.ecoFriendly == 1" name="check"/>
+        <v-icon v-if="restaurant.ecoFriendly == 1" name="check" color="#007947"/>
         <v-icon v-if="restaurant.ecoFriendly == null" name="times" color="#ff6252"/>
         <label>Veggie</label>
-        <v-icon v-if="restaurant.veggie == 1" name="check"/>
-        <v-icon v-if="restaurant.veggie == null" name="times"/>
+        <v-icon v-if="restaurant.veggie == 1" name="check" color="#007947"/>
+        <v-icon v-if="restaurant.veggie == null" name="times" color="#ff6252"/>
         <label>Gluten free</label>
-        <v-icon v-if="restaurant.glutenFree == 1" name="check"/>
-        <v-icon v-if="restaurant.glutenFree == null" name="times"/>
+        <v-icon v-if="restaurant.glutenFree == 1" name="check" color="#007947"/>
+        <v-icon v-if="restaurant.glutenFree == null" name="times" color="#ff6252"/>
         <label>Local products</label>
-        <v-icon v-if="restaurant.localProducts == 1" name="check"/>
-        <v-icon v-if="restaurant.localProducts == null" name="times"/>
+        <v-icon v-if="restaurant.localProducts == 1" name="check" color="#007947"/>
+        <v-icon v-if="restaurant.localProducts == null" name="times" color="#ff6252"/>
       </div>
       <h2 class="basic-header">Providers</h2>
       <div class="info info--less-padding">
@@ -74,9 +74,9 @@ export default {
   computed: {
     style() {
       if (this.restaurant.img) {
-        return `background-image:url("http://localhost:1337${
+        return `background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(82, 255, 184,0.5)),url('http://localhost:1337${
           this.restaurant.img.url
-        }")`;
+        }')`;
       }
     }
   },
@@ -98,7 +98,6 @@ export default {
   display: flex;
   top: 0;
   left: auto;
-  z-index: -9999;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -107,6 +106,7 @@ export default {
   background-repeat: no-repeat;
   background-position: fixed;
   z-index: -99999;
+
   h1 {
     margin: 0;
     font-size: 3rem;

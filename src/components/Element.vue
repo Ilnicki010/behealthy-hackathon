@@ -44,6 +44,9 @@ export default {
   box-shadow: 0 10px 10px rgba(82, 255, 184, 0.3);
   margin-top: 25px;
   z-index: 9999;
+  @media (min-width: 1025px) {
+    margin: 22px 20px;
+  }
 }
 .basic-info {
   padding: 5px 20px 20px;
@@ -61,11 +64,11 @@ export default {
   }
 }
 .isTrue {
-  border-bottom: 4px solid #78bc61;
+  border-bottom: 4px solid #007947;
 }
 label {
   font-size: 0.8em;
   padding: 5px;
-  border-bottom: 4px solid #bc6178;
+  border-bottom: 4px solid #ff6252;
 }
 </style>
