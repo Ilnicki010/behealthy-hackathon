@@ -21,7 +21,11 @@
         <v-icon v-if="restaurant.ecoFriendly == null" name="times" color="#ff6252"/>
         <label>Veggie</label>
         <v-icon v-if="restaurant.veggie == 1" name="check" color="#007947"/>
-        <v-icon v-if="restaurant.veggie == null" name="times" color="#ff6252"/>
+        <v-icon
+          v-if="restaurant.veggie == null || restaurant.veggie == 0"
+          name="times"
+          color="#ff6252"
+        />
         <label>Gluten free</label>
         <v-icon v-if="restaurant.glutenFree == 1" name="check" color="#007947"/>
         <v-icon v-if="restaurant.glutenFree == null" name="times" color="#ff6252"/>
@@ -35,11 +39,16 @@
       </div>
       <h2 class="basic-header">Certificates</h2>
       <div class="info info--less-padding">
+        <a href="/about" class="link">?</a>
         <h2 v-html="restaurant.certs_name"></h2>
         <img
           v-if="restaurant.certs_imgs"
           :src="`http://localhost:1337/${restaurant.certs_imgs.url}`"
         >
+      </div>
+      <h2 v-if="restaurant.from_owner" class="basic-header">From owner</h2>
+      <div v-if="restaurant.from_owner" class="info">
+        <p v-html="restaurant.from_owner"></p>
       </div>
     </div>
   </div>
@@ -136,8 +145,25 @@ export default {
   background: #52ffb8;
   padding: 20px;
   border-radius: 4px;
+  position: relative;
   img {
     max-height: 50px;
+  }
+  .link {
+    position: absolute;
+    top: -8px;
+    height: 20px;
+    width: 20px;
+    right: -8px;
+    border-radius: 100%;
+    background: #1d573f;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8em;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 .info--less-padding {
