@@ -1,30 +1,3 @@
 # appdataboys
-## Backend on Strapi CMS (strapi-cms branch)
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Backend on Strapi JS CMS (strapi-cms branch)
+Demo video: https://drive.google.com/file/d/1yUG3G8VVGZOnC8Y7MGrQ0ZJFVJrq4Ffu/view?usp=sharing
