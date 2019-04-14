@@ -1,0 +1,89 @@
+{
+  "connection": "default",
+  "collectionName": "restaurants",
+  "info": {
+    "name": "restaurants",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "default": "",
+      "type": "string"
+    },
+    "veggie": {
+      "default": false,
+      "type": "boolean"
+    },
+    "gmo": {
+      "default": false,
+      "type": "boolean"
+    },
+    "glutenFree": {
+      "default": false,
+      "type": "boolean"
+    },
+    "ecoFriendly": {
+      "default": false,
+      "type": "boolean"
+    },
+    "img": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "certs_name": {
+      "default": "",
+      "type": "text"
+    },
+    "certs_imgs": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "providers": {
+      "default": "",
+      "type": "text"
+    },
+    "city": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "sample",
+        "Gdynia",
+        "Gdansk",
+        "Sopot"
+      ]
+    },
+    "adress": {
+      "default": "",
+      "type": "string"
+    },
+    "menu_link": {
+      "default": "",
+      "type": "string"
+    },
+    "localProducts": {
+      "default": false,
+      "type": "boolean"
+    },
+    "lat": {
+      "default": "",
+      "type": "float"
+    },
+    "long": {
+      "default": "",
+      "type": "float"
+    },
+    "from_owner": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}
